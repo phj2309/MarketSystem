@@ -1,0 +1,52 @@
+.textarea{
+    font-size: 12px;
+    line-height: 22px;
+    outline:none;
+    resize:none;
+    overflow-y: hidden;
+    width: 100%;
+
+    &.style {
+        &-default {
+            border-bottom: 1px solid #ccc;
+
+            &:focus {
+                border-bottom: 2px solid #00B992;
+            }
+    
+            &::placeholder {
+                color: #ABABAB;
+            }
+        }
+
+        &-border {
+            background: #F6FBFF;
+            color: #88BA97;
+
+            &.color-blue { 
+                border: 1px solid #86C3EE;
+            }
+            &.color-green {
+                border: 1px solid #88BA97;
+            }
+        }
+    }
+   
+    &.color {
+        &-default {
+            background: transparent;
+            color: #646464;
+        }
+
+        &-blue {
+            background: #F6FBFF;
+            color: #86C3EE;
+        }
+
+        &-green {
+            background: #F5FBF7;
+            
+            color: #88BA97;
+        }
+    }
+}

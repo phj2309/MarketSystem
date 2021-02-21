@@ -1,0 +1,189 @@
+.MainLayout {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+
+	.Menu {
+		position: relative;
+		background: #F8F8FA;
+		border-right: 1px solid #DDDDDD;
+		min-height: 100%;
+		min-width: 220px;
+
+		.Top {
+			padding: 10px;
+			overflow: hidden;
+			border-bottom: 1px solid #DDDDDD;
+
+			.VisibleMenu {
+				float: left;
+				
+				.openMenuIcon{
+					width: 18px;
+					height: 18px;
+					margin-top: 5px;
+					margin-left: 5px;
+					cursor: pointer;
+				}
+			}
+
+			.UserInfo {
+				float: right;
+
+				.userName {
+					text-align: right;
+					font-size: 18px;
+					color: #848484;
+					margin-right: 5px;
+				}
+			}
+		}
+
+		.MainMenu {
+			border-bottom: 1px solid #DDDDDD;
+		}
+
+		.nav {
+			ul {
+				list-style: none;
+
+				li {
+					padding-left: 10px;
+					padding-right: 10px;
+					cursor: pointer;
+					display: flex;
+					align-items: center;
+					height: 60px;
+					width: 100%;
+					
+
+					&.select {
+						background: #E4F3FF;
+						border-right: 5px solid #00B992;
+					}
+
+					&:hover {
+						background: #e1f5f1;
+					}
+
+					.lectureIcon,
+					p,
+					.notification {
+						float: left;
+					}
+
+					.lectureIcon {
+						width: 24px;
+						height: 24px;
+						margin-left: 10px;
+						margin-right: 15px;
+					}
+
+					p {
+						flex: 1;
+						line-height: 24px;
+						font-size: 16px;
+						color: #848484;
+					}
+
+					.notification {
+						float: right;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+
+						p {
+							color: #fff;
+							font-size: 13px;
+							line-height: 24px;
+							width: 35px;
+							background: #FF6464;
+							border-radius: 8px;
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
+		
+
+		.Bottom {
+			position: absolute;
+			cursor: pointer;
+			bottom: 20px;
+			padding-left: 20px;
+			width: 100%;
+
+			.logoutIcon,
+			.logoutText {
+				float: left;
+			}
+
+			.logoutIcon {
+				width: 24px;
+				height: 24px;
+				margin-right: 15px;
+			}
+
+			.logoutText {
+				font-size: 18px;
+				font-weight: 500;
+				color: #838383;
+				line-height: 24px;
+			}
+
+		}
+
+		
+		&.small {    
+			min-width: 45px;
+			//background-color: #fff;
+			border : 0;
+			min-height: 100%;
+
+			.notification {
+				position: absolute;
+				top: 10px;
+				left: 5px;
+
+				p {
+					color: #fff;
+					background: #FF6464;
+					font-size: 10px;
+					line-height: 12px;
+					width: 12px;
+					height: 12px;
+					text-align: center;
+					border-radius: 50%;
+				}
+
+			}
+
+			.Bottom {
+				padding-right: 5px;
+				padding-left: 5px;
+
+				.logoutBtn {		
+					display: flex;
+					justify-content: center;
+
+					
+					.logoutIcon {
+						width: 18px;
+						height: 18px;
+						margin-right: 0px;
+					}
+				}
+
+			}
+			
+		}
+
+	}
+
+	.Content {
+		flex: 1;
+		padding: 10px;
+	}
+}

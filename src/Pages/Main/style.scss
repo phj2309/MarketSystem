@@ -1,0 +1,79 @@
+.MainPage {
+	width: 100%;
+	height: 100%;
+	justify-content: center;    
+	align-items: center;
+
+	.Main {
+		position: relative;
+		border-radius: 15px;
+        padding: 20px 20px;
+        min-height: 100%;
+
+        .Top{
+            
+            .lectureIcon{
+                width: 24px;
+			    height: 24px;
+                margin-right: 5px;
+		    }
+
+
+            .Title {
+                width: 100%;
+                height: auto;
+                line-height: 35px;
+                font-size: 20px;
+                text-align: center;
+                margin-bottom: 20px;
+        }
+
+        }
+
+        .Search{
+            margin-bottom: 10px;
+
+            .searchBtn{
+                border-radius: 15px;
+            }
+
+        }
+
+
+        .Contents{
+            margin-top: 10px;
+            width: 100%;
+            height: 60px;
+
+            display: flex;
+	        flex-direction: row;
+
+            .ImgContents{
+
+                .OpenMenuIcon{
+                    width: 50px;
+                    height: 100%;
+                    margin-right: 15px;
+                    cursor: pointer;
+                    float: left;
+                }
+            }
+
+            .TextContents{
+               margin: 10px 0px;
+
+                .TitleContents{
+                    font-size: 14px;
+                }
+
+                .DetailContents{
+                    font-size: 12px;
+                    padding-left: 3px;
+                }
+            }
+        }
+
+        
+    }
+
+}

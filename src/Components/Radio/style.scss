@@ -1,0 +1,27 @@
+.Radio {
+	cursor: pointer;
+
+	&.color-default {
+		background: #F5FBF7;
+		border: 1px solid #00B992;
+		color: #00B992;
+	}
+
+	&.color-blue {
+		background: #F6FBFF;
+		border: 1px solid #86C3EE;
+		color: #86C3EE;
+	}
+
+	&.color-green {
+		background: #F5FBF7;
+		border: 1px solid #00B992;
+		color: #00B992;
+	}
+
+	&:disabled {
+		background: #747474;
+		border: 1px solid #eee;
+		color: #eee;
+	}
+}
