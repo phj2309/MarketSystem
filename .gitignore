@@ -32,3 +32,4 @@ dist
 # sftp 접속 정보 담겨져 있음
 .vscode/
 package-lock.json
+
