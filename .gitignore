@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Gatsby files
+.cache/
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# sftp 접속 정보 담겨져 있음
+.vscode/
+package-lock.json
