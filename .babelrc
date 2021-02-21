@@ -1,0 +1,42 @@
+{
+	"presets": [
+		"@babel/preset-env",
+		"@babel/preset-react"
+	],
+	"plugins": [
+		["@babel/transform-runtime"],
+		[
+			"@babel/plugin-proposal-decorators",
+			{
+				"legacy": true
+			}
+		],
+		[
+			"@babel/plugin-proposal-class-properties",
+			{
+				"loose": true
+			}
+		],
+		[
+			"module-resolver",
+			{
+				// root 폴더 설정
+				"root": "./src",
+				"alias": {
+					"jquery-ui": "jquery-ui-dist/jquery-ui.js",
+					"jquery-ui-css": "jquery-ui-dist/jquery-ui.css",
+					"@asset": "./src/Assets",
+					"@root": "./src",
+					"@components": "./src/Components",
+					"@pages": "./src/Pages",
+					"@router": "./src/Router",
+					"@store": "./src/Store",
+					"@systems": "./src/Systems",
+					"@templates": "./src/Templates",
+					"@util": "./src/Util",
+					"@views": "./src/Views"
+				}
+			}
+		]
+	]
+}
