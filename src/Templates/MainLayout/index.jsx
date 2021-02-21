@@ -22,11 +22,11 @@ const MainLayout = (props) => {
     };
 
     const handleVisibleMenu = (e) => {
-        //console.log('asd');
-        storeMain.setVisible(!storeMain.visible);
+        console.log('asd');
+        setVisible(!visible);
     };
 
-    if (!storeMain.visible) {
+    if (visible === true) {
         menuElem = (
             <div className="Menu">
                 <div className="Top">
