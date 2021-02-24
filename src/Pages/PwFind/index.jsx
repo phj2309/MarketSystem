@@ -5,6 +5,8 @@ import Input from "@components/Input";
 import Button from "@components/Button"; 
 import "./style.scss"; 
 import MainLayout from "../../Templates/MainLayout";
+
+import * as Util from "@util";
  
 const PwFind = (props) => { 
 
@@ -21,19 +23,19 @@ const PwFind = (props) => {
     };
 
     const findBtn = (e) => {
-        // Util.requestServer("auth/find/pw", "POST", {
-        //     id: id,
-        //     email: email,
-        // }).then(async function (result) {
-        //     if (result.code == 200) {
+        Util.requestServer("user/findpw", "POST", {
+            id: id,
+            email: email,
+        }).then(async function (result) {
+            if (result.code == 200) {
                
-        //         alert(result.body.msg);
+                alert(result.body);
                 
-        //         props.history.push("/login");
-        //     } else {
-        //         alert(result.body.msg);
-        //     }
-        // });
+                props.history.push("/login");
+            } else {
+                alert(result.body);
+            }
+        });
     };
  
     return ( 
