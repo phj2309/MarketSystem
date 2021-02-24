@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, memo } from "react";
 
 import Input from "@components/Input";
 import Button from "@components/Button";
+import * as Util from "@util";
 
 import "./style.scss";
 import MainLayout from "../../Templates/MainLayout";
@@ -42,20 +43,23 @@ const RegisterPage = (props) => {
     const registerBtn = async (e) => {
         let isValidate = validation();
 
-        // if(isValidate) {
-        //     Util.requestServer("auth/register", "POST", {
-        //         name: name,
-        //         pw: pw,
-        //         email: email
-        //     }).then(function (result) {
-        //         if(result.code == 200) {
-        //             alert(result.body.msg);
-        //             props.history.push('/login');
-        //         } else {
-        //             alert(result.body.msg);
-        //         }
-        //     });
-        // }
+        if(isValidate) {
+            Util.requestServer("user/signup", "POST", {
+                name: name,
+                pw: pw,
+                email: email,
+                id: id,
+                phone: phoneNum
+            }).then(function (result) {
+                if(result.code == 200) {
+                    console.log(result);
+                    alert(result.body);
+                    props.history.push('/login');
+                } else {
+                    alert(result.body);
+                }
+            });
+        }
     };
 
     const validation = () => {
