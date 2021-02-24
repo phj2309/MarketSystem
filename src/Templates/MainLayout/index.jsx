@@ -19,6 +19,7 @@ const MainLayout = (props) => {
     const handleLogout = (e) => {
         sessionStorage["token"] = "";
         storeMain.logout();
+        props.history.push("/login");
     };
 
     const handleVisibleMenu = (e) => {

@@ -10,6 +10,7 @@ import InfoChangePage from "./Pages/InfoChange";
 import EnrollPage from "./Pages/Enroll";
 import EnrollDetailPage from "./Pages/EnrollDetail";
 
+import * as Util from "@util";
 
 import "./index.scss";
 

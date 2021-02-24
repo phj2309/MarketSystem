@@ -9,6 +9,8 @@ import Input from "@components/Input";
 
 import "./style.scss";
 
+import * as Util from "@util";
+
 import Logo from "@asset/bamboo.svg";
 
 const LoginPage = (props) => {
@@ -26,26 +28,26 @@ const LoginPage = (props) => {
     };
 
     const loginBtn = (e) => {
-        // Util.requestServer("auth/login", "POST", {
-        //     id: id,
-        //     pw: pw,
-        // }).then(async function (result) {
-        //     if (result.code == 200) {
-        //         sessionStorage["token"] = result.body.token;
+        Util.requestServer("login", "POST", {
+            id: id,
+            password: pw,
+        }).then(async function (result) {
+            if (result.code == 200) {
+                sessionStorage["token"] = result.body.token;
 
-        //         let resp = await Util.requestServer("auth/info", "get", {});
-        //         storeMain.login(
-        //             resp.body.info.id,
-        //             resp.body.info.name,
-        //             resp.body.info.userType
-        //         );
-        //         alert(result.body.msg);
+                //let resp = await Util.requestServer("auth/info", "get", {});
+                storeMain.login(
+                    result.body.id,
+                    result.body.name,
+                    result.body.userIdx,
+                );
+                alert("로그인 되었습니다.");
 
-        //         props.history.push("/");
-        //     } else {
-        //         alert(result.body.msg);
-        //     }
-        // });
+                props.history.push("/");
+            } else {
+                alert("로그인이 실패했습니다.");
+            }
+        });
     };
 
     return (
