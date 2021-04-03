@@ -9,6 +9,7 @@ import PwFindPage from "./Pages/PwFind";
 import InfoChangePage from "./Pages/InfoChange";
 import EnrollPage from "./Pages/Enroll";
 import EnrollDetailPage from "./Pages/EnrollDetail";
+import Chat from "./Pages/Chat";
 
 import * as Util from "@util";
 
@@ -28,6 +29,7 @@ const App = (props) => {
                 <Route path="/infochange" component={InfoChangePage} />
                 <Route path="/enroll" component={EnrollPage} />
                 <Route path="/enrolldetail" component={EnrollDetailPage} />
+                <Route path="/chat" component={Chat} />
             </BrowserRouter>
         </React.Fragment>
     );

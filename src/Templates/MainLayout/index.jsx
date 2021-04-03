@@ -45,7 +45,12 @@ const MainLayout = (props) => {
                             <img className="lectureIcon" src={AddIcon} alt=""></img>
                             <p>상품 등록</p>
                         </li>
-                        <li>
+                        <li onClick={() => {
+                                storeMain.setMenu("chat");
+                                props.history.replace(
+                                    "/chat" 
+                                );
+                            }}>
                             <img className="lectureIcon" src={ChatIcon} alt=""></img>
                             <p>채팅</p>
                         </li>

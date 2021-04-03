@@ -26,7 +26,7 @@ export const requestServer = async function(_url, _method, _params) {
 	try {
 		let resp = await axios({
 			method: _method,
-			url: 'http://localhost:8081/' + _url,
+			url: 'http://211.186.10.181:3000/' + _url, // 'http://222.238.100.247:3000' + _url,
 			params: params, // params null 
 			data: data, // null  params
 			headers: {
