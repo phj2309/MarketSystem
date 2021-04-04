@@ -1,0 +1,50 @@
+.title {
+    font-size: 24px;
+    font-weight: 200;
+    color: #838383;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.Container{
+    height: 100%;
+    flex-direction: column;
+    background-color: red;
+}
+
+
+.Contents{
+    margin-top: 10px;
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    flex-direction: row;
+
+    // padding: 5px 0;
+    // border-top: 1px solid #848484;
+
+    .ImgContents{
+
+        .OpenMenuIcon{
+            width: 50px;
+            height: 100%;
+            margin-right: 15px;
+            cursor: pointer;
+            float: left;
+        }
+    }
+
+    .TextContents{
+       margin: 10px 0px;
+
+        .TitleContents{
+            font-size: 14px;
+        }
+
+        .DetailContents{
+            font-size: 12px;
+            padding-left: 3px;
+        }
+    }
+}
