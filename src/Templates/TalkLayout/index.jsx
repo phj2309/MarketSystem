@@ -8,7 +8,7 @@ import BubbleChat from "@components/BubbleChat";
 import "./style.scss";
 
 const TalkLayout = (props) => {
-    const { storeMain, storeLecture } = props;
+    //const { storeMain, storeLecture } = props;
     const [chat, setChat] = useState("");
 
 
@@ -22,33 +22,37 @@ const TalkLayout = (props) => {
         setChat(e.target.value);
     };
 
-    const handleChatKeyDown = e => {
-        if(e.keyCode == 13) {
-            storeMain.socket.emit("message", {
-                token: sessionStorage.token,
-                type: "chat",
-                data: {
-                    courseIdx: storeLecture.selectLecture.courseIdx,
-                    chat: chat,
-                    type: props.type,
-                },
-            });
+    // const handleChatKeyDown = e => {
+    //     if(e.keyCode == 13) {
+    //         storeMain.socket.emit("message", {
+    //             token: sessionStorage.token,
+    //             type: "chat",
+    //             data: {
+    //                 courseIdx: storeLecture.selectLecture.courseIdx,
+    //                 chat: chat,
+    //                 type: props.type,
+    //             },
+    //         });
     
-            setChat('');
-        }
-    }
+    //         setChat('');
+    //     }
+    // }
 
-    const btnSend = (e) => {
-        storeMain.socket.emit("message", {
-            token: sessionStorage.token,
-            type: "chat",
-            data: {
-                courseIdx: storeLecture.selectLecture.courseIdx,
-                chat: chat,
-                type: props.type,
-            },
-        });
+    // const btnSend = (e) => {
+    //     storeMain.socket.emit("message", {
+    //         token: sessionStorage.token,
+    //         type: "chat",
+    //         data: {
+    //             courseIdx: storeLecture.selectLecture.courseIdx,
+    //             chat: chat,
+    //             type: props.type,
+    //         },
+    //     });
 
+    //     setChat('');
+    // };
+
+      const btnSend = (e) => {
         setChat('');
     };
 
@@ -56,13 +60,13 @@ const TalkLayout = (props) => {
     let placeHolderMsg = "메시지 입력";
     let btnMsg = "전송";
 
-    if (props.type === "notice") {
-        if (storeMain.userType == 0) {
-            placeHolderMsg = "교수님만 사용 가능합니다.";
-            btnMsg = "전송 불가";
-            disabled = true;
-        }
-    }
+    // if (props.type === "notice") {
+    //     if (storeMain.userType == 0) {
+    //         placeHolderMsg = "교수님만 사용 가능합니다.";
+    //         btnMsg = "전송 불가";
+    //         disabled = true;
+    //     }
+    // }
 
     return (
         <div className="TalkLayout">
@@ -74,7 +78,7 @@ const TalkLayout = (props) => {
                 <Input
                     value={chat}
                     onChange={handleChat}
-                    onKeyDown={handleChatKeyDown}
+                    // onKeyDown={handleChatKeyDown}
                     placeholder={placeHolderMsg}
                     height="small"
                     margin="0px 10px 0px 0px"
@@ -93,4 +97,6 @@ const TalkLayout = (props) => {
     );
 };
 
-export default inject("storeMain", "storeLecture")(TalkLayout);
+export default TalkLayout;
+
+//export default inject("storeMain", "storeLecture")(TalkLayout);

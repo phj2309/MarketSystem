@@ -4,6 +4,7 @@ import { observer, inject } from "mobx-react";
 import MainLayout from "@templates/MainLayout";
 import TalkLayout from "@templates/TalkLayout";
 import BubbleChat from "@components/BubbleChat";
+import ChatHeader from "@components/ChatHeader";
 
 import "./style.scss";
 
@@ -54,8 +55,9 @@ const Chat = (props) => {
 
     return (
         <MainLayout>
-            <TalkLayout title="강의 톡" type="qna">
-                {/* {chats} */}
+            <TalkLayout title="채팅" type="qna">
+                <ChatHeader></ChatHeader>
+                <BubbleChat color="green"></BubbleChat>
                 <BubbleChat></BubbleChat>
             </TalkLayout>
         </MainLayout>

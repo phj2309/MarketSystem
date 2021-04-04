@@ -13,7 +13,7 @@ import "./style.scss";
 
 const MainLayout = (props) => {
     const { storeMain, storeModal, storeLecture } = props;
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     let menuElem = null;
 
     const handleLogout = (e) => {
