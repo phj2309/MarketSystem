@@ -149,6 +149,7 @@ const EnrollPage = (props) => {
               onKeyDown={resize}
               placeholder="제품 설명을 입력하세요."
               margin="0px 0px 10px 0px"
+              className="content"
             ></Textarea>
 
             <div className="wrap">

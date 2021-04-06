@@ -13,7 +13,7 @@ import "./style.scss";
 
 const MainLayout = (props) => {
     const { storeMain, storeModal, storeLecture } = props;
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     let menuElem = null;
 
     const handleLogout = (e) => {
@@ -41,11 +41,21 @@ const MainLayout = (props) => {
                 </div>
                 <div className="MainMenu nav">
                     <ul>
-                        <li>
+                    <li onClick={() => {
+                                storeMain.setMenu("enroll");
+                                props.history.replace(
+                                    "/enroll" 
+                                );
+                            }}>
                             <img className="lectureIcon" src={AddIcon} alt=""></img>
                             <p>상품 등록</p>
                         </li>
-                        <li>
+                        <li onClick={() => {
+                                storeMain.setMenu("chat");
+                                props.history.replace(
+                                    "/chat" 
+                                );
+                            }}>
                             <img className="lectureIcon" src={ChatIcon} alt=""></img>
                             <p>채팅</p>
                         </li>
