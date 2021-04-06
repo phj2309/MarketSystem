@@ -41,7 +41,12 @@ const MainLayout = (props) => {
                 </div>
                 <div className="MainMenu nav">
                     <ul>
-                        <li>
+                    <li onClick={() => {
+                                storeMain.setMenu("enroll");
+                                props.history.replace(
+                                    "/enroll" 
+                                );
+                            }}>
                             <img className="lectureIcon" src={AddIcon} alt=""></img>
                             <p>상품 등록</p>
                         </li>

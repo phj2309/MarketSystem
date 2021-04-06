@@ -1,103 +1,107 @@
 .EnrollPage {
-	width: 100%;
-	height: 100%;
-	justify-content: center;    
-	align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 
-	.Enroll {
-		position: relative;
-		border-radius: 15px;
-        padding: 20px 20px;
-        min-height: 100%;
+  .Enroll {
+    position: relative;
+    padding: 20px 20px;
+    min-height: 100%;
+    flex-direction: column;
 
-        .Top{
-            .closeIcon{
-                width: 18px;
-                height: 18px;
-                float: right;
-            }
-            .Title {
-                width: 100%;
-                height: auto;
-                line-height: 35px;
-                font-size: 20px;
-                text-align: center;
-                margin-bottom: 20px;
+    .Top {
+      width: 100%;
+      height: 15%;
+      .closeIcon {
+        width: 18px;
+        height: 18px;
+        float: right;
+      }
+      .Title {
+        line-height: 35px;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
 
-                .lectureIcon{
-                    width: 24px;
-                    height: 24px;
-                    margin-right: 5px;
-                }
-            }
-
+        .lectureIcon {
+          width: 24px;
+          height: 24px;
+          margin-right: 5px;
         }
-
-        .Contents{
-            min-height: 100%;
-            margin-top: 50px;
-            
-                .pic{
-                    height: 50px;
-                    label {
-                        height: 100%;
-                        border: 1px solid #00B992;
-                        background-color: #F5FBF7;
-                        color: #00B992;
-                        border-radius: 15px;
-                        padding: 25px 17px 25px 17px;
-                        font-size: 14px;
-                        font-weight: 500;
-                    }
-                    
-                    label:focus, label:hover {
-                        cursor: pointer;
-                        outline: none;
-                    }
-               }
-
-            .item_title {
-				font-size: 11px;
-				color: #646464;
-				padding-left: 5px;
-				padding-bottom: 5px;
-            }
-
-            .text {
-				width: 100%;
-			}
-            
-            .wrap {
-                margin-bottom: 15px;
-            }
-
-            .rental {
-
-                .typeLabel {
-                    font-size: 13px;
-                    color: #646464;
-                    padding-right: 15px;
-                }
-
-                .rentalType {
-                    margin: 0px 5px;
-                    -webkit-appearance: checkbox;
-                    cursor: pointer;
-
-                }
-            }
-        }
-        .Bottom{
-
-            .uploadBtn{
-                position: fixed;
-                bottom: 20px;
-                cursor: pointer;
-            }
-
-        }
-
-        
+      }
     }
 
+    .Contents {
+      height: 100%;
+      margin-top: 50px;
+      flex-direction: column;
+
+      .pic {
+        height: 50px;
+        label {
+          height: 100%;
+          border: 1px solid #00b992;
+          background-color: #f5fbf7;
+          color: #00b992;
+          border-radius: 15px;
+          padding: 25px 17px 25px 17px;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        label:focus,
+        label:hover {
+          cursor: pointer;
+          outline: none;
+        }
+      }
+
+      .item_title {
+        font-size: 11px;
+        color: #646464;
+        padding-left: 5px;
+        padding-bottom: 5px;
+      }
+
+      //   .text {
+      //     width: 100%;
+      //   }
+
+      //   .title {
+      //     height: 30px;
+      //   }
+
+      //   .cost {
+      //     height: 30px;
+      //   }
+
+      //   .content {
+      //     height: 50px;
+      //   }
+
+      .wrap {
+        margin-bottom: 15px;
+      }
+
+      .rental {
+        .typeLabel {
+          font-size: 13px;
+          color: #646464;
+          padding-right: 15px;
+        }
+
+        .rentalType {
+          margin: 0px 5px;
+          -webkit-appearance: checkbox;
+          cursor: pointer;
+        }
+      }
+    }
+    .Bottom {
+      .uploadBtn {
+        cursor: pointer;
+      }
+    }
+  }
 }
