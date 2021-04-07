@@ -56,7 +56,7 @@ const Evaluation = () => {
         <div className="Bottom">
           <Button
             className="uploadBtn"
-            value="신고하기"
+            value="완료"
             width="100%"
             height="50px"
             onClick={uploadBtn}

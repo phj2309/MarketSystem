@@ -1,39 +1,32 @@
 .Container {
-	padding-bottom: 10px;
-	height: 10%;
-	overflow: hidden;
-    display: flex;
-    border-bottom: 1px solid #848484;
+  overflow: hidden;
+  border-bottom: 1px solid #a3a3a3;
+  padding-bottom: 10px;
 
-    .Contents{
-        width: 100%;
+  .Contents {
+    width: 100%;
+    flex-direction: row;
 
-        display: flex;
-        flex-direction: row;
-
-        .ImgContents{
-
-            .OpenMenuIcon{
-                width: 50px;
-                height: 100%;
-                margin-right: 15px;
-                cursor: pointer;
-                float: left;
-            }
-        }
-
-        .TextContents{
-           margin: 10px 0px;
-
-            .TitleContents{
-                font-size: 14px;
-            }
-
-            .DetailContents{
-                font-size: 12px;
-                padding-left: 3px;
-            }
-        }
+    .ImgContents {
+      .OpenMenuIcon {
+        width: 50px;
+        margin-right: 15px;
+        cursor: pointer;
+        float: left;
+      }
     }
 
+    .TextContents {
+      margin: 10px 0px;
+
+      .TitleContents {
+        font-size: 14px;
+      }
+
+      .DetailContents {
+        font-size: 12px;
+        padding-left: 3px;
+      }
+    }
+  }
 }
