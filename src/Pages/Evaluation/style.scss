@@ -37,6 +37,21 @@
     .Contents {
       font-size: 15px;
     }
+
+    .NumWrapper {
+      flex-direction: row;
+    }
+
+    .NumInnerWrapper {
+      float: left;
+    }
+
+    .Num {
+      font-size: 15px;
+      height: 45px;
+      margin-left: 10px;
+      padding-top: 8px;
+    }
   }
 
   .Bottom {

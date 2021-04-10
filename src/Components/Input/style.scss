@@ -1,37 +1,35 @@
 .form-control {
-	border-bottom: 1px solid #CCCCCC;
-	background-color: transparent;
-	outline: none;
-	font-size: 13px;
-	color: #747474;
-	padding-left: 5px;
-	height: 50px;
+  border-bottom: 1px solid #cccccc;
+  background-color: transparent;
+  outline: none;
+  font-size: 13px;
+  color: #747474;
+  padding-left: 5px;
+  height: 50px;
 
-	&:focus {
-		border-bottom: 2px solid #00B992;
-	}
+  &:focus {
+    border-bottom: 2px solid #00b992;
+  }
 
-	&::placeholder {
-		color: #ABABAB;
-	}
+  &::placeholder {
+    color: #ababab;
+  }
 
-	&:disabled {
+  &:disabled {
+    &::placeholder {
+      color: #646464;
+    }
+  }
 
-		&::placeholder {
+  &.height {
+    &_default {
+      height: 50px;
+      line-height: 50px;
+    }
 
-			color: #646464;
-		}
-	}
-
-	&.height {
-		&_default {
-			height: 50px;
-			line-height: 50px;
-		}
-
-		&_small {
-			height: 40px;
-			line-height: 40px;
-		}
-	}
+    &_small {
+      height: 35px;
+      line-height: 35px;
+    }
+  }
 }

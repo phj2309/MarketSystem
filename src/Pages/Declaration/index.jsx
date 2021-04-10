@@ -5,7 +5,7 @@ import { withRouter, Link } from "react-router-dom";
 import MainLayout from "@templates/MainLayout";
 
 import Button from "@components/Button";
-import Textarea from "@components/Textarea";
+import TextareaLine from "@components/TextareaLine";
 
 import "./style.scss";
 
@@ -40,7 +40,7 @@ const Declaration = () => {
         <div className="ContentsWrapper">
           <p className="Contents">쥬르리 님과의 거래 중에 문제가 있으셨나요?</p>
 
-          <Textarea
+          <TextareaLine
             padding="5px 0px 0px 5px"
             value={content}
             height="200px"
@@ -50,7 +50,7 @@ const Declaration = () => {
             placeholder="내용을 입력하세요."
             margin="0px 0px 10px 0px"
             className="content"
-          ></Textarea>
+          ></TextareaLine>
         </div>
 
         <div className="Bottom">

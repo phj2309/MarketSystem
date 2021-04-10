@@ -5,7 +5,8 @@ import { withRouter, Link } from "react-router-dom";
 import MainLayout from "@templates/MainLayout";
 
 import Button from "@components/Button";
-import Textarea from "@components/Textarea";
+import TextareaLine from "@components/TextareaLine";
+import Input from "@components/Input";
 
 import "./style.scss";
 
@@ -13,7 +14,12 @@ import Logo from "@asset/bamboo.svg";
 import closeIcon from "@asset/close.svg";
 
 const Evaluation = () => {
+  const [num, setNum] = useState("");
   const [content, setContent] = useState("");
+
+  const handleNumChange = (e) => {
+    setNum(e.target.value);
+  };
 
   const handleContentChange = (e) => {
     setContent(e.target.value);
@@ -40,8 +46,25 @@ const Evaluation = () => {
         <div className="ContentsWrapper">
           <p className="Contents">쥬르리 님과의 거래를 평가해주세요!</p>
 
-          <Textarea
-            padding="5px 0px 0px 5px"
+          <div className="NumWrapper">
+            <div className="NumInnerWrapper">
+              <Input
+                type="text"
+                className="title"
+                placeholder="5"
+                margin="0px 0px 10px 0px"
+                value={num}
+                onChange={handleNumChange}
+                width="50px"
+                height="small"
+              />
+            </div>
+
+            <div className="Num"> / 5</div>
+          </div>
+
+          <TextareaLine
+            padding="5px 10px 5px 10px"
             value={content}
             height="200px"
             onChange={handleContentChange}
@@ -50,7 +73,7 @@ const Evaluation = () => {
             placeholder="내용을 입력하세요."
             margin="0px 0px 10px 0px"
             className="content"
-          ></Textarea>
+          ></TextareaLine>
         </div>
 
         <div className="Bottom">
