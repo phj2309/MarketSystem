@@ -11,6 +11,8 @@ import EnrollPage from "./Pages/Enroll";
 import EnrollDetailPage from "./Pages/EnrollDetail";
 import Chat from "./Pages/Chat";
 import ChatList from "./Pages/ChatList";
+import Declaration from "./Pages/Declaration";
+
 
 import * as Util from "@util";
 
@@ -32,6 +34,7 @@ const App = (props) => {
                 <Route path="/enrolldetail" component={EnrollDetailPage} />
                 <Route path="/chat" component={Chat} />
                 <Route path="/chatlist" component={ChatList} />
+                <Route path="/declaration" component={Declaration} />
             </BrowserRouter>
         </React.Fragment>
     );
