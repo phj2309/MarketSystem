@@ -1,5 +1,5 @@
-import React, { PureComponent }from "react";
-import { BrowserRouter, Route} from "react-router-dom";
+import React, { PureComponent } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 
 import MainPage from "./Pages/Main";
@@ -11,7 +11,10 @@ import EnrollPage from "./Pages/Enroll";
 import EnrollDetailPage from "./Pages/EnrollDetail";
 import Chat from "./Pages/Chat";
 import ChatList from "./Pages/ChatList";
+import Evaluation from "./Pages/Evaluation";
+
 import Declaration from "./Pages/Declaration";
+
 
 
 import * as Util from "@util";
@@ -19,7 +22,8 @@ import * as Util from "@util";
 import "./index.scss";
 
 const App = (props) => {
-    console.log(props);
+  console.log(props);
+
 
     return (
         <React.Fragment>
@@ -35,6 +39,7 @@ const App = (props) => {
                 <Route path="/chat" component={Chat} />
                 <Route path="/chatlist" component={ChatList} />
                 <Route path="/declaration" component={Declaration} />
+      <Route path="/evaluation" component={Evaluation} />
             </BrowserRouter>
         </React.Fragment>
     );

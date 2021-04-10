@@ -1,0 +1,48 @@
+.Wrapper {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 20px;
+
+  .Top {
+    width: 100%;
+    height: 15%;
+    flex-direction: row;
+
+    .Title {
+      line-height: 35px;
+      font-size: 20px;
+      text-align: center;
+      width: 90%;
+      float: left;
+    }
+
+    .ImgWrapper {
+      width: 18px;
+      height: 35px;
+      float: left;
+      .closeIcon {
+        resize: none;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .ContentsWrapper {
+    height: 70%;
+
+    .Contents {
+      font-size: 15px;
+    }
+  }
+
+  .Bottom {
+    height: 15%;
+    .uploadBtn {
+      cursor: pointer;
+    }
+  }
+}

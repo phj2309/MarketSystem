@@ -1,58 +1,57 @@
 .BubbleChat {
-	width: 100%;
-	font-size: 15px;
-	font-weight: 500;
-	color: #848484;
-	margin-top: 10px;
-	display: flex;
-	flex-direction: column;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  color: #848484;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 
-	.Chat {
-		width: auto;
-		border-radius: 7px;
-		padding: 5px;
-		margin: 5px 0px;
+  .Chat {
+    width: auto;
+    border-radius: 7px;
+    padding: 5px;
+    margin: 5px 0px;
+  }
 
-	}
+  &.color-default {
+    .Name {
+      color: #7bc1f3;
+    }
 
-	&.color-default {
-		.Name {
-			color: #7BC1F3;
-		}
+    .Chat {
+      background: #f6fbff;
+      border: 1px solid #7bc1f3;
+      margin-right: auto;
+    }
+  }
 
-		.Chat {
-			background: #F6FBFF;
-			border: 1px solid #7BC1F3;
-			margin-right: auto;
-		}
-	}
+  &.color-blue {
+    .Name {
+      color: #7bc1f3;
+    }
 
-	&.color-blue {
-		.Name {
-			color: #7BC1F3;
-		}
+    .Chat {
+      background: #f6fbff;
+      border: 1px solid #7bc1f3;
+      margin-right: auto;
+    }
+  }
 
-		.Chat {
-			background: #F6FBFF;
-			border: 1px solid #7BC1F3;
-			margin-right: auto;
-		}
-	}
+  &.color-green {
+    .Name {
+      color: #88ba97;
+      text-align: right;
+    }
 
-	&.color-green {
-		.Name {
-			color: #88BA97;
-			text-align: right;
-		}
+    .Chat {
+      background: #f5fbf7;
+      border: 1px solid #88ba97;
+      margin-left: auto;
+    }
 
-		.Chat {
-			background: #F5FBF7;
-			border: 1px solid #88BA97;
-			margin-left: auto;
-		}
-
-		.Date {
-			text-align: right;
-		}
-	}
+    .Date {
+      text-align: right;
+    }
+  }
 }
