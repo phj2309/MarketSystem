@@ -11,6 +11,8 @@ import Textarea from "@components/Textarea";
 
 import "./style.scss";
 
+import * as Util from "@util";
+
 import Logo from "@asset/bamboo.svg";
 import closeIcon from "@asset/close.svg";
 import cameraIcon from "@asset/camera.svg";
@@ -26,6 +28,7 @@ const EnrollPage = (props) => {
 
   const [imgBase64, setImgBase64] = useState(""); // 파일 base64
   const [imgFile, setImgFile] = useState(null);
+  const [previewURL, setPreviewURL] = useState("");
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -71,7 +74,9 @@ const EnrollPage = (props) => {
     console.log("adfadf");
   };
 
-  const uploadBtn = (e) => {};
+  const uploadBtn = (e) => {
+
+  };
 
   const handleChangeFile = (event) => {
     let reader = new FileReader();
@@ -79,6 +84,7 @@ const EnrollPage = (props) => {
     reader.onloadend = () => {
       // 2. 읽기가 완료되면 아래코드가 실행됩니다.
       const base64 = reader.result;
+      setPreviewURL(reader.result);
       if (base64) {
         setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
       }
@@ -103,10 +109,12 @@ const EnrollPage = (props) => {
           </div>
 
           <div className="Contents">
+            <div className="ImagePreview">
+              <img className="img_preview" src={previewURL}/>
+            </div>
             <div className="pic">
               {/* <img className="cameraIcon" src={cameraIcon} alt=""></img>
                             <p className="picTitle">사진 등록</p> */}
-
               <label className="input-file-button" for="input-file">
                 사진 등록
               </label>
@@ -116,7 +124,7 @@ const EnrollPage = (props) => {
                 multiple
                 id="input-file"
                 name="imgFile"
-                id="imgFile"
+                //id="imgFile"
                 onChange={handleChangeFile}
                 style={{ display: "none" }}
               />

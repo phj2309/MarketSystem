@@ -36,10 +36,19 @@
       height: 100%;
       margin-top: 50px;
       flex-direction: column;
+      
+      .ImagePreview {
+        .img_preview {
+          height: 100px;
+          object-fit: contain;
+        }
+      }
 
       .pic {
-        height: 50px;
+        height: 80px;
         label {
+          position: relative;
+          top: 40%;
           height: 100%;
           border: 1px solid #00b992;
           background-color: #f5fbf7;
