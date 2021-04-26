@@ -33,8 +33,7 @@ const LoginPage = (props) => {
             password: pw,
         }).then(async function (result) {
             if (result.code == 200) {
-                sessionStorage["token"] = result.body.token;
-
+                sessionStorage["token"] = result.body.jwtToken;
                 //let resp = await Util.requestServer("auth/info", "get", {});
                 storeMain.login(
                     result.body.id,

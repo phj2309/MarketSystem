@@ -1,3 +1,5 @@
+import { _isComputingDerivation } from "mobx";
+
 const axios = require("axios").default;
 
 export const requestServer = async function (_url, _method, _params) {
@@ -19,10 +21,13 @@ export const requestServer = async function (_url, _method, _params) {
   // IE 지원
   document.execCommand("ClearAuthenticationCache", "false");
 
+  
+
   try {
     let resp = await axios({
       method: _method,
       url: "http://3.35.103.50:8080/" + _url,
+      //url: "http://localhost:8081/" + _url,
       params: params, // params null
       data: data, // null  params
       headers: {

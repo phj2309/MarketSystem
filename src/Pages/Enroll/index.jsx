@@ -24,11 +24,14 @@ const EnrollPage = (props) => {
   const [cost, setCost] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
+  const [registrationDate, setRegistrationDate] = useState("");
   const [rentalType, setRentalType] = useState(false);
 
   const [imgBase64, setImgBase64] = useState(""); // 파일 base64
   const [imgFile, setImgFile] = useState(null);
   const [previewURL, setPreviewURL] = useState("");
+
+  const formData = new FormData();
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -62,7 +65,8 @@ const EnrollPage = (props) => {
 
   const handleDateChange = (e) => {
     console.log(e.target.value);
-    setDate(e.target.value);
+    //setDate(e.target.value);
+    setDate(new Date(e.target.value).toISOString().substring(0, 10));
   };
 
   const handleRentalTypeChange = (e) => {
@@ -75,7 +79,35 @@ const EnrollPage = (props) => {
   };
 
   const uploadBtn = (e) => {
+    if(imgBase64 == "") {
+      alert("이미지를 추가해주세요.");
+      return;
+    }
 
+    //var now = new Date();
+    setRegistrationDate(new Date().toISOString().substring(0, 19));
+
+    formData.append('title', title);
+    formData.append('userId', storeMain.id);
+    formData.append('content', content);
+    formData.append('charge', cost);
+    formData.append('type', rentalType);
+    formData.append('registrationDate', registrationDate);
+    formData.append('returnDate', date);
+
+    //var imgList = [imgFile];
+    formData.append('images', imgFile);
+
+    Util.requestServer("item/save", "POST", formData).then(function (result) {
+      console.log(result);
+      if (result.code == 200) {
+          alert(result.body);
+          props.history.replace("/");
+          //storeMain.setMenu('assignmentList');
+      } else {
+          alert(result.body);
+      }
+  });
   };
 
   const handleChangeFile = (event) => {

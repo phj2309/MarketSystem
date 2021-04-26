@@ -21,6 +21,7 @@ import "./index.scss";
 
 const App = (props) => {
   console.log(props);
+  const { storeMain } = props;
 
   return (
     <React.Fragment>
