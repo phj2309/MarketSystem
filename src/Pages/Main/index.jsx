@@ -43,6 +43,14 @@ const MainPage = (props) => {
 
   const searchBtn = (e) => {
     console.log(search);
+    Util.requestServer("item/search", "GET", {
+      keyword: search,
+    }).then(async function (result) {
+      if(result.code === 200) {
+        console.log(result);
+        setList(result.body);
+      }
+    });
     //사용자가 입력한 값이 search로 들어옴 -> search 값 넘겨주기
   };
 
