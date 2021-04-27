@@ -38,6 +38,12 @@
       margin-top: 50px;
       flex-direction: column;
 
+      .img{
+        .image{
+          width: 100%;
+        }
+      }
+
       .pic {
         height: 50px;
         label {

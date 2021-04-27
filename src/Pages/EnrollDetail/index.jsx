@@ -10,13 +10,44 @@ import Textarea from "@components/Textarea";
 
 import "./style.scss";
 
+import * as Util from "@util";
+
 const EnrollDetailPage = (props) => {
-  const { storeMain } = props;
+  const { storeMain, storeItem } = props;
 
   const [title, setTitle] = useState("");
   const [cost, setCost] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
+  const [type, setType] = useState(true);
+  const [images, setImages] = useState([]);
+
+  let typeValue = "";
+
+  useEffect(() => {
+    if(storeItem) {
+      Util.requestServer("item", "GET", {
+        itemIdx : storeItem.selectItem.itemIdx,
+      }).then(function (resp) {
+        let body = resp.body;
+
+        if(resp.code === 200) {
+          setTitle(body.title);
+          setCost(body.charge);
+          setContent(body.content);
+          setDate(body.returnDate);
+          setType(body.type);
+          setImages(body.imageList);
+        }
+      });
+    }
+  }, []);
+
+  if(type) {
+    typeValue = "대여";
+  } else {
+    typeValue = "판매";
+  }
 
   const infoBtn = (e) => {
     console.log("adfadf");
@@ -31,22 +62,24 @@ const EnrollDetailPage = (props) => {
           <div className="Top">
             <Button
               className="typeBtn"
-              value="대여"
+              value={typeValue}
               width="50px"
               height="30px"
               disabled
             ></Button>
 
-            <p className="Title">자료구조 책 팝니다~</p>
+            <p className="Title">{title}</p>
           </div>
 
           <div className="Contents">
-            <div className="img"></div>
+            <div className="img">
+              <img className="image" src={"data:image/png;base64,"+images[0]} alt=""></img>
+            </div>
 
             <div style={{ borderTop: "1px solid #ccc" }}>
               <Textarea
                 padding="5px 0px 0px 5px"
-                value="새거고 어쩌고 저ㄱ저고"
+                value={content}
                 height="200px"
                 margin="0px 0px 10px 0px"
                 disabled
@@ -57,7 +90,7 @@ const EnrollDetailPage = (props) => {
 
               <div className="rental">
                 <p margin="0px 0px 10px 0px" width="60%">
-                  2022.12.22
+                  {date}
                 </p>
               </div>
             </div>
@@ -66,7 +99,7 @@ const EnrollDetailPage = (props) => {
               <p className="item_title">가격</p>
               <div className="rental">
                 <p margin="0px 0px 10px 0px" width="60%">
-                30000 원
+                {cost}
                 </p>
               </div>
             </div>
@@ -95,4 +128,4 @@ const EnrollDetailPage = (props) => {
   );
 };
 
-export default inject("storeMain")(observer(EnrollDetailPage));
+export default inject("storeMain", "storeItem")(observer(EnrollDetailPage));
