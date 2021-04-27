@@ -36,7 +36,7 @@ const MainLayout = (props) => {
                     </div>
 
                     <div className="UserInfo">
-                        <p className="userName">쥬르리</p>
+                        <p className="userName">{storeMain.name}</p>
                     </div>
                 </div>
                 <div className="MainMenu nav">

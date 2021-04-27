@@ -28,6 +28,7 @@ const MainPage = (props) => {
     });
   }, []);
 
+
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
@@ -83,19 +84,6 @@ const MainPage = (props) => {
               onClick={searchBtn}
             ></Button>
           </div>
-          {/* {items.map((item) => (
-            <div className="Contents">
-              <div className="ImgContents">
-                <img className="OpenMenuIcon" src={item.img} alt=""></img>
-              </div>
-
-              <div className="TextContents">
-                <p className="TitleContents"> {item.title}</p>
-
-                <p className="DetailContents"> {item.contents} </p>
-              </div>
-            </div>
-          ))} */}
           {list.map((item) => (
             <div className="Contents">
             <div className="ImgContents">
@@ -108,8 +96,7 @@ const MainPage = (props) => {
               <p className="DetailContents"> {item.charge} </p>
             </div>
           </div>
-          ))
-          }
+          ))}
         </div>
       </div>
     </MainLayout>
