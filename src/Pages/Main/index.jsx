@@ -14,7 +14,7 @@ import openMenuIcon from "@asset/open-menu.svg";
 import * as Util from "@util";
 
 const MainPage = (props) => {
-  const { storeMain, match, history } = props;
+  const { storeMain, storeItem, match, history } = props;
   const [search, setSearch] = useState("");
   const [list, setList] = useState([]);
 
@@ -27,6 +27,14 @@ const MainPage = (props) => {
       }
     });
   }, []);
+
+  const handleItem = (item) => {
+    storeItem.setSelectItem(item);
+
+    props.history.replace(
+      "/enrollDetail"
+    )
+  };
 
 
   const handleSearchChange = (e) => {
@@ -85,7 +93,9 @@ const MainPage = (props) => {
             ></Button>
           </div>
           {list.map((item) => (
-            <div className="Contents">
+            <div className="Contents"
+              onClick={(e) => handleItem(item)}
+            >
             <div className="ImgContents">
               <img className="OpenMenuIcon" src={"data:image/png;base64,"+item.image} alt=""></img>
             </div>
@@ -103,4 +113,4 @@ const MainPage = (props) => {
   );
 };
 
-export default inject("storeMain")(observer(MainPage));
+export default inject("storeMain", "storeItem")(observer(MainPage));
