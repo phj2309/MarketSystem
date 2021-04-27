@@ -11,9 +11,22 @@ import "./style.scss";
 import Logo from "@asset/bamboo.svg";
 import openMenuIcon from "@asset/open-menu.svg";
 
+import * as Util from "@util";
+
 const MainPage = (props) => {
-  const { storeLecture, storeMain, match, history } = props;
+  const { storeMain, match, history } = props;
   const [search, setSearch] = useState("");
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    Util.requestServer("item/list", "GET", {
+    }).then(async function (result) {
+      if(result.code === 200) {
+        console.log(result);
+        setList(result.body);
+      }
+    });
+  }, []);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -70,7 +83,7 @@ const MainPage = (props) => {
               onClick={searchBtn}
             ></Button>
           </div>
-          {items.map((item) => (
+          {/* {items.map((item) => (
             <div className="Contents">
               <div className="ImgContents">
                 <img className="OpenMenuIcon" src={item.img} alt=""></img>
@@ -82,7 +95,21 @@ const MainPage = (props) => {
                 <p className="DetailContents"> {item.contents} </p>
               </div>
             </div>
-          ))}
+          ))} */}
+          {list.map((item) => (
+            <div className="Contents">
+            <div className="ImgContents">
+              <img className="OpenMenuIcon" src={"data:image/png;base64,"+item.image} alt=""></img>
+            </div>
+
+            <div className="TextContents">
+              <p className="TitleContents"> {item.title}</p>
+
+              <p className="DetailContents"> {item.charge} </p>
+            </div>
+          </div>
+          ))
+          }
         </div>
       </div>
     </MainLayout>

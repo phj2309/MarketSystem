@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 
@@ -22,6 +22,12 @@ import "./index.scss";
 const App = (props) => {
   console.log(props);
   const { storeMain } = props;
+
+  useEffect(() => {
+    if(!sessionStorage["token"] && location.pathname !== "/login") {
+      location.href = "/login";
+    }
+  })
 
   return (
     <React.Fragment>
