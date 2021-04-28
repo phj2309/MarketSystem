@@ -24,8 +24,18 @@ const App = (props) => {
   const { storeMain } = props;
 
   useEffect(() => {
-    if(!sessionStorage["token"] && location.pathname !== "/login") {
-      location.href = "/login";
+    if(sessionStorage["token"]) {
+      Util.requestServer("user/info", "GET", {
+        token: sessionStorage["token"]
+      }).then(function (resp) {
+        storeMain.login(
+          resp.body.id,
+          resp.body.name,
+          resp.body.userIdx,
+        )
+      })
+    } else {
+      if(location.pathname !== "/login") location.href = "/login";
     }
   })
 

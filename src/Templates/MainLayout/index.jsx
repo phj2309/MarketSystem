@@ -53,7 +53,7 @@ const MainLayout = (props) => {
                         <li onClick={() => {
                                 storeMain.setMenu("chat");
                                 props.history.replace(
-                                    "/chat" 
+                                    "/chatlist" 
                                 );
                             }}>
                             <img className="lectureIcon" src={ChatIcon} alt=""></img>

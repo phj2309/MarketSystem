@@ -53,7 +53,20 @@ const EnrollDetailPage = (props) => {
     console.log("adfadf");
   };
 
-  const chatBtn = (e) => {};
+  const chatBtn = (e) => {
+    Util.requestServer("chat/create", "POST", {
+      itemIdx: storeItem.selectItem.itemIdx,
+      userIdx: storeMain.userIdx
+  }).then(function (result) {
+      if(result.code == 200) {
+          console.log(result);
+          alert("채팅방이 개설되었습니다.");
+          props.history.push('/chat');
+      } else {
+          alert(result.body);
+      }
+  });
+  };
 
   return (
     <MainLayout>
@@ -111,7 +124,7 @@ const EnrollDetailPage = (props) => {
               height="50px"
               width="45%"
               margin="0 10px"
-              onclick={infoBtn}
+              onClick={infoBtn}
             ></Button>
 
             <Button
@@ -119,7 +132,7 @@ const EnrollDetailPage = (props) => {
               height="50px"
               width="45%"
               float="right"
-              onclick={chatBtn}
+              onClick={chatBtn}
             ></Button>
           </div>
         </div>

@@ -5,7 +5,32 @@ import MainLayout from "@templates/MainLayout";
 
 import "./style.scss";
 
-const ChatList = () => {
+import * as Util from "@util";
+
+const ChatList = (props) => {
+  const { storeMain, storeChat } = props;
+
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    Util.requestServer("chat/list", "GET", {
+      userIdx: storeMain.userIdx
+    }).then(async function (result) {
+      if(result.code === 200) {
+        console.log(result);
+        setList(result.body);
+      }
+    });
+  }, []);
+
+  const enterChatRoom = (item) => {
+    storeChat.enterChat(item.chatRoomIdx);
+
+    props.history.replace(
+      "/chat"
+    )
+  }
+
     const items = [
         {// img, title, content 값 가져오기
           img: 
@@ -25,16 +50,18 @@ const ChatList = () => {
         <MainLayout>
             <p className="title">채팅</p>
             <div className="Container">
-          {items.map((item) => (
-            <div className="Contents">
+          {list.map((item, idx) => (
+            <div className="Contents"
+              onClick={(e) => enterChatRoom(item)}
+            >
               <div className="ImgContents">
-                <img className="OpenMenuIcon" src={item.img} alt=""></img>
+                <img className="OpenMenuIcon" src={"data:image/png;base64,"+item.image} alt=""></img>
               </div>
 
               <div className="TextContents">
                 <p className="TitleContents"> {item.title}</p>
 
-                <p className="DetailContents"> {item.contents} </p>
+                <p className="DetailContents"> {item.charge} </p>
               </div>
             </div>
           ))}
@@ -43,6 +70,4 @@ const ChatList = () => {
     );
 }
 
-//export default inject("storeMain", "storeLecture", "storeChat")(observer(Chat));
-
-export default ChatList;
+export default inject("storeMain", "storeChat")(observer(ChatList));

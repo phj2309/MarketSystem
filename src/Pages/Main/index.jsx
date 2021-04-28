@@ -100,7 +100,7 @@ const MainPage = (props) => {
               onClick={searchBtn}
             ></Button>
           </div>
-          {list.map((item) => (
+          {list.map((item, idx) => (
             <div className="Contents"
               onClick={(e) => handleItem(item)}
             >
