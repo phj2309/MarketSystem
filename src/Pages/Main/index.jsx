@@ -101,19 +101,19 @@ const MainPage = (props) => {
             ></Button>
           </div>
           {list.map((item, idx) => (
-            <div className="Contents"
+            <div className="Contents" key={idx}
               onClick={(e) => handleItem(item)}
             >
-            <div className="ImgContents">
-              <img className="OpenMenuIcon" src={"data:image/png;base64,"+item.image} alt=""></img>
-            </div>
+              <div className="ImgContents">
+                <img className="OpenMenuIcon" src={"data:image/png;base64,"+item.image} alt=""></img>
+              </div>
 
-            <div className="TextContents">
-              <p className="TitleContents"> {item.title}</p>
+              <div className="TextContents">
+                <p className="TitleContents"> {item.title}</p>
 
-              <p className="DetailContents"> {item.charge} </p>
+                <p className="DetailContents"> {item.charge} </p>
+              </div>
             </div>
-          </div>
           ))}
         </div>
       </div>
