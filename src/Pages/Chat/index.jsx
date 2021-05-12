@@ -5,67 +5,70 @@ import MainLayout from "@templates/MainLayout";
 import TalkLayout from "@templates/TalkLayout";
 import BubbleChat from "@components/BubbleChat";
 import ChatHeader from "@components/ChatHeader";
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
 
 import "./style.scss";
 
+import * as Util from "@util";
+
 const Chat = (props) => {
-  //const { storeMain, storeLecture, storeChat } = props;
+  const { storeMain, storeChat } = props;
+  const [list, setList] = useState([]);
+  const chatBoxElem = useRef(null);
 
-  // useEffect(() => {
-  //     storeChat.init();
-  //     storeMain.socket.on(
-  //         storeLecture.selectLecture.courseIdx + "_chat_qna",
-  //         onMessage
-  //     );
+  let sockJS = new SockJS("http://3.35.103.50:8080/ws-stomp");
+  let stompClient = Stomp.over(sockJS);
+  storeMain.setStomp(stompClient);
 
-  //     return () => {
-  //         console.log('un mount');
-  //         storeMain.socket.off(
-  //             storeLecture.selectLecture.courseIdx + "_chat_qna",
-  //             onMessage
-  //         );
-  //     };
-  // }, []);
+  useEffect(() => {
+    Util.requestServer("chat/room", "GET", {
+      chatRoomIdx: storeChat.chatRoomIdx
+    }).then(async function (result) {
+      if(result.code === 200) {
+        console.log(result);
+        setList(result.body);
+        storeChat.setChats(result.body);
+      }
+    });
 
-  // const onMessage = (msg) => {
-  //     if (storeMain.userIdx == msg.data.userIdx) {
-  //         storeChat.addChat(
-  //             {
-  //                 type: 0,
-  //                 data: msg.data,
-  //             }
-  //         );
-  //     } else {
-  //         storeChat.addChat(
-  //             {
-  //                 type: 1,
-  //                 data: msg.data,
-  //             }
-  //         );
-  //     }
-  // };
+    stompClient.connect({}, () => {
+      stompClient.subscribe("/sub/chat/room/"+storeChat.chatRoomIdx, (data) => {
+        var recv = JSON.parse(data.body);
+        addMessage(recv);
+      });
+    });
 
-  // let chats = storeChat.chats.map((item, i) => {
-  //     return item.type == 0 ? (
-  //         <BubbleChat key={i} data={item.data} color="green"></BubbleChat>
-  //     ) : (
-  //         <BubbleChat key={i} data={item.data}></BubbleChat>
-  //     );
-  // });
+      return () => {
+          console.log('disconnect');
+          stompClient.disconnect();
+      };
+  }, []);
+
+  const addMessage = (msg) => {
+    storeChat.addChat(msg);
+    setList(storeChat.chats);
+    console.log("msg: "+msg);
+    chatBoxElem.current.scrollTop = chatBoxElem.current.scrollHeight;
+  }
+
+  let chats = list.map((item, i) => {
+    return (
+      <BubbleChat
+          key={i}
+          data={item}
+          color={item.userIdx == storeMain.userIdx ? "green" : "default"}
+      ></BubbleChat>
+    );
+  });
 
   return (
     <MainLayout>
-      <TalkLayout title="채팅" type="qna">
-        <div>
-          {/* <ChatHeader></ChatHeader> */}
-          <BubbleChat color="green"></BubbleChat>
-          <BubbleChat></BubbleChat>
-        </div>
+      <TalkLayout refElem={chatBoxElem} title="채팅" type="qna">
+          {chats}
       </TalkLayout>
     </MainLayout>
   );
 };
 
-//export default inject("storeMain", "storeLecture", "storeChat")(observer(Chat));
-
-export default Chat;
+export default inject("storeMain", "storeChat")(observer(Chat));

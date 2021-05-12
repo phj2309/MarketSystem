@@ -8,65 +8,33 @@ import BubbleChat from "@components/BubbleChat";
 import "./style.scss";
 
 const TalkLayout = (props) => {
-    //const { storeMain, storeLecture } = props;
+    const { storeMain, storeChat } = props;
     const [chat, setChat] = useState("");
 
-
-    const inputControl = () => {
-        if (props.title.indexOf("공지") == 1) {
-            //userType이 교수면 input 사용가능
-            // 학생이면 input에 disable 넣기
-        }
-    };
     const handleChat = (e) => {
         setChat(e.target.value);
     };
 
-    // const handleChatKeyDown = e => {
-    //     if(e.keyCode == 13) {
-    //         storeMain.socket.emit("message", {
-    //             token: sessionStorage.token,
-    //             type: "chat",
-    //             data: {
-    //                 courseIdx: storeLecture.selectLecture.courseIdx,
-    //                 chat: chat,
-    //                 type: props.type,
-    //             },
-    //         });
-    
-    //         setChat('');
-    //     }
-    // }
+    const handleChatKeyDown = e => {
+        if(e.keyCode == 13) {
+            btnSend();
+        }
+    }
 
-    // const btnSend = (e) => {
-    //     storeMain.socket.emit("message", {
-    //         token: sessionStorage.token,
-    //         type: "chat",
-    //         data: {
-    //             courseIdx: storeLecture.selectLecture.courseIdx,
-    //             chat: chat,
-    //             type: props.type,
-    //         },
-    //     });
-
-    //     setChat('');
-    // };
-
-      const btnSend = (e) => {
+    const btnSend = (e) => {
+        storeMain.stompClient.send("/pub/chat/message",{},
+            JSON.stringify({
+                chatRoomIdx:storeChat.chatRoomIdx,
+                userIdx:storeMain.userIdx,
+                message:chat
+            })
+        );
         setChat('');
     };
 
     let disabled = false;
     let placeHolderMsg = "메시지 입력";
     let btnMsg = "전송";
-
-    // if (props.type === "notice") {
-    //     if (storeMain.userType == 0) {
-    //         placeHolderMsg = "교수님만 사용 가능합니다.";
-    //         btnMsg = "전송 불가";
-    //         disabled = true;
-    //     }
-    // }
 
     return (
         <div className="TalkLayout">
@@ -78,7 +46,7 @@ const TalkLayout = (props) => {
                 <Input
                     value={chat}
                     onChange={handleChat}
-                    // onKeyDown={handleChatKeyDown}
+                    onKeyDown={handleChatKeyDown}
                     placeholder={placeHolderMsg}
                     height="small"
                     margin="0px 10px 0px 0px"
@@ -97,6 +65,4 @@ const TalkLayout = (props) => {
     );
 };
 
-export default TalkLayout;
-
-//export default inject("storeMain", "storeLecture")(TalkLayout);
+export default inject("storeMain", "storeChat")(TalkLayout);

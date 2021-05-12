@@ -35,12 +35,12 @@ const BubbleChat = (props) => {
 
     <div className={clsName}>
       <div className="Chat">
-        <p>안녕하세요</p>
+        <p>{props.data.message}</p>
       </div>
 
-      <p className="Date">{Util.dateForm("2020.03.11 13:14:05", "full")}</p>
+      {/* <p className="Date">{Util.dateForm("2020.03.11 13:14:05", "full")}</p> */}
 
-      {/* <p className="Date">{Util.dateForm(props.data.time, 'full')}</p> */}
+      <p className="Date">{Util.dateForm(props.data.sendTime, 'full')}</p>
     </div>
   );
 };

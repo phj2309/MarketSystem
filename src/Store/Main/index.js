@@ -20,6 +20,9 @@ export default class Main {
 	@observable
 	userIdx = -1;
 
+  @observable
+  stompClient = null;
+
   @action login = (id, name, userIdx) => {
     this.isLogin = true;
     this.id = id;
@@ -40,6 +43,10 @@ export default class Main {
   
   @action setMenu = (menu) => {
     this.menu = menu;
+  }
+
+  @action setStomp = (stompClient) => {
+    this.stompClient = stompClient;
   }
 
 }
