@@ -8,7 +8,7 @@ import "./style.scss";
 import * as Util from "@util";
 
 const ChatList = (props) => {
-  const { storeMain, storeChat } = props;
+  const { storeMain, storeChat, storeItem } = props;
 
   const [list, setList] = useState([]);
 
@@ -25,6 +25,7 @@ const ChatList = (props) => {
 
   const enterChatRoom = (item) => {
     storeChat.enterChat(item.chatRoomIdx);
+    storeItem.setSelectItem(item);
 
     props.history.replace(
       "/chat"
@@ -52,6 +53,7 @@ const ChatList = (props) => {
             <div className="Container">
           {list.map((item, idx) => (
             <div className="Contents"
+              key = {idx}
               onClick={(e) => enterChatRoom(item)}
             >
               <div className="ImgContents">
@@ -70,4 +72,4 @@ const ChatList = (props) => {
     );
 }
 
-export default inject("storeMain", "storeChat")(observer(ChatList));
+export default inject("storeMain", "storeChat", "storeItem")(observer(ChatList));

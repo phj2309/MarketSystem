@@ -13,8 +13,9 @@ import "./style.scss";
 import * as Util from "@util";
 
 const Chat = (props) => {
-  const { storeMain, storeChat } = props;
+  const { storeMain, storeChat, storeItem } = props;
   const [list, setList] = useState([]);
+  const [itemUserId, setItemUserId] = useState("");
   const chatBoxElem = useRef(null);
 
   let sockJS = new SockJS("http://3.35.103.50:8080/ws-stomp");
@@ -39,6 +40,14 @@ const Chat = (props) => {
       });
     });
 
+    Util.requestServer("item/userId", "GET", {
+      itemIdx: storeItem.selectItem.itemIdx
+    }).then(async function (result) {
+      if(result.code === 200) {
+        setItemUserId(result.body);
+      }
+    });
+
       return () => {
           console.log('disconnect');
           stompClient.disconnect();
@@ -50,6 +59,12 @@ const Chat = (props) => {
     setList(storeChat.chats);
     console.log("msg: "+msg);
     chatBoxElem.current.scrollTop = chatBoxElem.current.scrollHeight;
+  }
+
+  let isMyItem = false;
+
+  if(itemUserId === storeMain.id) {
+    isMyItem = true;
   }
 
   let chats = list.map((item, i) => {
@@ -64,11 +79,11 @@ const Chat = (props) => {
 
   return (
     <MainLayout>
-      <TalkLayout refElem={chatBoxElem} title="채팅" type="qna">
+      <TalkLayout isMyItem={isMyItem} refElem={chatBoxElem} title="채팅" type="qna">
           {chats}
       </TalkLayout>
     </MainLayout>
   );
 };
 
-export default inject("storeMain", "storeChat")(observer(Chat));
+export default inject("storeMain", "storeChat", "storeItem")(observer(Chat));
