@@ -9,6 +9,9 @@ export default class Main {
   mypageInfoIdx = -1;
 
   @observable
+  mypageInfoName = '';
+
+  @observable
   isLogin = false;
   
 	@observable
@@ -54,6 +57,10 @@ export default class Main {
 
   @action setMypageInfoIdx = (idx) => {
     this.mypageInfoIdx = idx;
+  }
+
+  @action setMypageInfoName = (name) => {
+    this.mypageInfoName = name;
   }
 
 }

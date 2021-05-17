@@ -30,7 +30,6 @@ const MyPage = (props) => {
               setPurchaseList(result.body.purchaseList);
             }
           });
-      
     }, []);
 
     //   const evalList = [
@@ -53,6 +52,7 @@ const MyPage = (props) => {
       };
 
       const evalMoreBtn = (item) => {
+        storeMain.setMypageInfoName(name);
         props.history.replace(
           "/evalList"
         )

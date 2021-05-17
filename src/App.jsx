@@ -14,6 +14,7 @@ import ChatList from "./Pages/ChatList";
 import Evaluation from "./Pages/Evaluation";
 import PurchaseList from "./Pages/PurchaseList";
 import MyPage from "./Pages/MyPage";
+import EvaluationList from "./Pages/EvaluationList";
 
 import Declaration from "./Pages/Declaration";
 
@@ -58,6 +59,7 @@ const App = (props) => {
         <Route path="/evaluation" component={Evaluation} />
         <Route path="/purchaselist" component={PurchaseList} />
         <Route path="/mypage" component={MyPage} />
+        <Route path="/evalList" component={EvaluationList} />
       </BrowserRouter>
     </React.Fragment>
   );
