@@ -13,6 +13,9 @@ const ChatList = (props) => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
+    storeItem.setSelectItem(null);
+    storeItem.setItemUserIdx(null);
+    
     Util.requestServer("chat/list", "GET", {
       userIdx: storeMain.userIdx
     }).then(async function (result) {

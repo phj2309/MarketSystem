@@ -51,6 +51,9 @@ const Chat = (props) => {
       return () => {
           console.log('disconnect');
           stompClient.disconnect();
+
+          storeItem.setSelectItem(null);
+          storeItem.setItemUserIdx(null);
       };
   }, []);
 

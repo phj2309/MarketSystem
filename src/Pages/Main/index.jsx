@@ -19,6 +19,9 @@ const MainPage = (props) => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
+    storeItem.setSelectItem(null);
+    storeItem.setItemUserIdx(null);
+    
     Util.requestServer("item/list", "GET", {
     }).then(async function (result) {
       if(result.code === 200) {

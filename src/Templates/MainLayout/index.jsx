@@ -12,7 +12,7 @@ import AddIcon from "@asset/add.svg";
 import "./style.scss";
 
 const MainLayout = (props) => {
-    const { storeMain, storeModal, storeLecture } = props;
+    const { storeMain, storeItem } = props;
     const [visible, setVisible] = useState(false);
     let menuElem = null;
 
@@ -60,9 +60,12 @@ const MainLayout = (props) => {
                             <p>채팅</p>
                         </li>
                         <li onClick={() => {
-                                storeMain.setMenu("infochange");
+                                storeMain.setMenu("mypage");
+                                //storeItem.setSelectItem(null);
+                                //storeItem.setItemUserIdx(null);
+                                storeMain.setMypageInfoIdx(storeMain.userIdx);
                                 props.history.replace(
-                                    "/infochange" 
+                                    "/mypage" 
                                 );
                             }}
                         >
@@ -113,5 +116,5 @@ const MainLayout = (props) => {
 };
 
 export default inject(
-    "storeMain"
+    "storeMain", "storeItem"
 )(withRouter(observer(MainLayout)));

@@ -21,6 +21,7 @@ const EnrollDetailPage = (props) => {
   const [date, setDate] = useState("");
   const [type, setType] = useState(true);
   const [images, setImages] = useState([]);
+  const [itemUserIdx, setItemUserIdx] = useState("");
 
   let typeValue = "";
 
@@ -38,6 +39,8 @@ const EnrollDetailPage = (props) => {
           setDate(body.returnDate);
           setType(body.type);
           setImages(body.imageList);
+          setItemUserIdx(body.userIdx);
+          storeItem.setItemUserIdx(itemUserIdx);
         }
       });
     }
@@ -50,7 +53,8 @@ const EnrollDetailPage = (props) => {
   }
 
   const infoBtn = (e) => {
-    console.log("adfadf");
+    storeMain.setMypageInfoIdx(itemUserIdx);
+    props.history.push('/mypage');
   };
 
   const chatBtn = (e) => {

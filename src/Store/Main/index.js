@@ -6,6 +6,9 @@ export default class Main {
   menu = 'main';
 
   @observable
+  mypageInfoIdx = -1;
+
+  @observable
   isLogin = false;
   
 	@observable
@@ -47,6 +50,10 @@ export default class Main {
 
   @action setStomp = (stompClient) => {
     this.stompClient = stompClient;
+  }
+
+  @action setMypageInfoIdx = (idx) => {
+    this.mypageInfoIdx = idx;
   }
 
 }
