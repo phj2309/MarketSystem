@@ -98,7 +98,7 @@ const MyPage = (props) => {
             <p className="title">{name}님의 마이페이지</p>
             <div className="MyPage">
                 <div className="Evaluation">
-                    <div className="Top">
+                    <div className="EvalTop">
                         <p className="title">평가내역</p>
                         <input type="button"
                             className="more"

@@ -7,12 +7,19 @@ export default class Item {
     @observable
     itemUserIdx = null;
 
+    @observable
+    editItemIdx = '';
+
     @action setSelectItem = (item) => {
         this.selectItem = item;
     }
 
     @action setItemUserIdx = (idx) => {
         this.itemUserIdx = idx;
+    }
+
+    @action setEditItemIdx = (idx) => {
+        this.editItemIdx = idx;
     }
 
 }

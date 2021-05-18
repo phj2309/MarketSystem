@@ -14,12 +14,14 @@
     flex-direction: column;
     .Evaluation{
         margin-bottom: 20px;
-        .Top{
+        .EvalTop{
             display: flex;
             flex-direction: row;
+            margin-bottom: 0;
             .title{
                 font-size: 16px;
 			    color: #838383;
+                flex: 1;
             }
             .more{
                 cursor: pointer;
@@ -53,6 +55,7 @@
         }
     }
     .Sale{
+        margin-bottom: 20px;
         .Top{
             display: flex;
             flex-direction: row;
