@@ -54,13 +54,60 @@ const SaleList = (props) => {
     };
 
     let edit = null;
+    let sale = null;
     if(storeMain.userIdx === storeMain.mypageInfoIdx) {
+        sale = (
+          saleList.map((item, idx) => (
+            <div className="Contents"
+              key = {idx}
+            >
+              <div className="ImgContents" onClick={(e) => handleItem(item)}>
+                <img className="OpenMenuIcon" src={"data:image/png;base64,"+item.image} alt=""></img>
+              </div>
+          
+              <div className="TextContents" onClick={(e) => handleItem(item)}>
+                <p className="TitleContents"> {item.title}</p>
+                <div className="Bottom">
+                  <p className="DetailContents"> {item.charge} </p>
+                  <p className="State">{item.state}</p>
+                </div>
+                
+              </div>
+
+              <div className="IconContents">
+                <img className="EditIcon" src={EditIcon} alt="" onClick={(e) => EditItem(item)}></img>
+                <img className="TrashIcon" src={TrashIcon} alt="" onClick={(e) => deleteItem(item)}></img>
+              </div>
+            </div>
+          ))
+        );
         edit = (
             <div className="IconContents">
                 <img className="EditIcon" src={EditIcon} alt="" onClick={(e) => EditItem(item)}></img>
                 <img className="TrashIcon" src={TrashIcon} alt="" onClick={(e) => deleteItem(item)}></img>
             </div>
         );
+    } else {
+      sale = (
+        saleList.map((item, idx) => (
+          <div className="Contents"
+            key = {idx}
+          >
+            <div className="ImgContents" onClick={(e) => handleItem(item)}>
+              <img className="OpenMenuIcon" src={"data:image/png;base64,"+item.image} alt=""></img>
+            </div>
+        
+            <div className="TextContents" onClick={(e) => handleItem(item)}>
+              <p className="TitleContents"> {item.title}</p>
+              <div className="Bottom">
+                <p className="DetailContents"> {item.charge} </p>
+                <p className="State">{item.state}</p>
+              </div>
+              
+            </div>
+          </div>
+        ))
+      )
     }
 
 
@@ -68,26 +115,7 @@ const SaleList = (props) => {
         <MainLayout>
             <p className="title">판매내역</p>
                 <div className="Container">
-                    {saleList.map((item, idx) => (
-                      <div className="Contents"
-                        key = {idx}
-                      >
-                        <div className="ImgContents" onClick={(e) => handleItem(item)}>
-                          <img className="OpenMenuIcon" src={"data:image/png;base64,"+item.image} alt=""></img>
-                        </div>
-                    
-                        <div className="TextContents" onClick={(e) => handleItem(item)}>
-                          <p className="TitleContents"> {item.title}</p>
-                          <div className="Bottom">
-                            <p className="DetailContents"> {item.charge} </p>
-                            <p className="State">{item.state}</p>
-                          </div>
-                          
-                        </div>
-
-                        {edit}
-                      </div>
-                    ))}
+                    {sale}
               </div>
         </MainLayout>
     );

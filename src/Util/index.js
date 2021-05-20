@@ -11,8 +11,8 @@ export const requestServer = async function (_url, _method, _params) {
   // else if (_method === "POST" || _method === "PUT" || _method === "DELETE")
   //   data = _params;
 
-  if (_method === "POST") data = _params;
-  else if (_method === "GET" || _method === "PUT" || _method === "DELETE")
+  if (_method === "POST" || _method === "PUT") data = _params;
+  else if (_method === "GET" || _method === "DELETE")
     params = _params;
 
   // sessionStorage['token'] = 사용자로부터 받은 토큰 -> 로그인시에 서버요청 -> 응답으로 토큰이 들어와있음 -> 응답받은 토큰을 -> sessionStorage['token'] 여기에 저장
