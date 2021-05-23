@@ -18,6 +18,7 @@ import EvaluationList from "./Pages/EvaluationList";
 import SaleList from "./Pages/SaleList";
 
 import Declaration from "./Pages/Declaration";
+import DeclarationList from "./Pages/DeclarationList";
 
 import * as Util from "@util";
 
@@ -28,20 +29,16 @@ const App = (props) => {
   const { storeMain } = props;
 
   useEffect(() => {
-    if(sessionStorage["token"]) {
+    if (sessionStorage["token"]) {
       Util.requestServer("user/info", "GET", {
-        token: sessionStorage["token"]
+        token: sessionStorage["token"],
       }).then(function (resp) {
-        storeMain.login(
-          resp.body.id,
-          resp.body.name,
-          resp.body.userIdx,
-        )
-      })
+        storeMain.login(resp.body.id, resp.body.name, resp.body.userIdx);
+      });
     } else {
-      if(location.pathname !== "/login") location.href = "/login";
+      if (location.pathname !== "/login") location.href = "/login";
     }
-  })
+  });
 
   return (
     <React.Fragment>
@@ -62,6 +59,7 @@ const App = (props) => {
         <Route path="/mypage" component={MyPage} />
         <Route path="/evalList" component={EvaluationList} />
         <Route path="/saleList" component={SaleList} />
+        <Route path="/declaList" component={DeclarationList} />
       </BrowserRouter>
     </React.Fragment>
   );
