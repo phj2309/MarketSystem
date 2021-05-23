@@ -8,6 +8,7 @@ import ChatIcon from "@asset/chat.svg";
 import openMenuIcon from "@asset/open-menu.svg";
 import UserIcon from "@asset/user.svg";
 import AddIcon from "@asset/add.svg";
+import HomeIcon from "@asset/home.svg";
 
 import "./style.scss";
 
@@ -41,6 +42,15 @@ const MainLayout = (props) => {
                 </div>
                 <div className="MainMenu nav">
                     <ul>
+                    <li onClick={() => {
+                                storeMain.setMenu("main");
+                                props.history.push(
+                                    "/" 
+                                );
+                            }}>
+                            <img className="lectureIcon" src={HomeIcon} alt=""></img>
+                            <p>메인</p>
+                        </li>
                     <li onClick={() => {
                                 storeMain.setMenu("enroll");
                                 props.history.replace(

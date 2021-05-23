@@ -16,6 +16,9 @@ const Chat = (props) => {
   const { storeMain, storeChat, storeItem } = props;
   const [list, setList] = useState([]);
   const [itemUserId, setItemUserId] = useState("");
+  const [itemUserIdx, setItemUserIdx] = useState("");
+  const [traderIdx, setTraderIdx] = useState("");
+  const [transState, setTransState] = useState("");
   const chatBoxElem = useRef(null);
 
   let sockJS = new SockJS("http://3.35.103.50:8080/ws-stomp");
@@ -28,8 +31,12 @@ const Chat = (props) => {
     }).then(async function (result) {
       if(result.code === 200) {
         console.log(result);
-        setList(result.body);
-        storeChat.setChats(result.body);
+        setList(result.body.chatList);
+        storeChat.setChats(result.body.chatList);
+        setTransState(result.body.transDto.state);
+        setItemUserId(result.body.transDto.itemUserId);
+        setItemUserIdx(result.body.transDto.itemUserIdx);
+        setTraderIdx(result.body.transDto.traderIdx);
       }
     });
 
@@ -40,13 +47,15 @@ const Chat = (props) => {
       });
     });
 
-    Util.requestServer("item/userId", "GET", {
-      itemIdx: storeItem.selectItem.itemIdx
-    }).then(async function (result) {
-      if(result.code === 200) {
-        setItemUserId(result.body);
-      }
-    });
+    // Util.requestServer("item/info", "GET", {
+    //   itemIdx: storeItem.selectItem.itemIdx
+    // }).then(async function (result) {
+    //   if(result.code === 200) {
+    //     setItemUserId(result.body.itemUserId);
+    //     setTraderIdx(result.body.traderIdx);
+    //     setTransState(result.body.state);
+    //   }
+    // });
 
       return () => {
           console.log('disconnect');
@@ -65,9 +74,13 @@ const Chat = (props) => {
   }
 
   let isMyItem = false;
+  let partnerIdx = '';
 
   if(itemUserId === storeMain.id) {
     isMyItem = true;
+    partnerIdx = traderIdx;
+  } else {
+    partnerIdx = itemUserIdx;
   }
 
   let chats = list.map((item, i) => {
@@ -82,7 +95,7 @@ const Chat = (props) => {
 
   return (
     <MainLayout>
-      <TalkLayout isMyItem={isMyItem} refElem={chatBoxElem} title="채팅" type="qna">
+      <TalkLayout partnerIdx={partnerIdx} transState={transState} isMyItem={isMyItem} refElem={chatBoxElem} title="채팅" type="qna">
           {chats}
       </TalkLayout>
     </MainLayout>

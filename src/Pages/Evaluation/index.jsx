@@ -10,12 +10,29 @@ import Input from "@components/Input";
 
 import "./style.scss";
 
+import * as Util from "@util";
+
 import Logo from "@asset/bamboo.svg";
 import closeIcon from "@asset/close.svg";
 
-const Evaluation = () => {
+const Evaluation = (props) => {
+  const { storeMain, storeChat, storeItem } = props;
   const [num, setNum] = useState("");
   const [content, setContent] = useState("");
+  const [partnerName, setPartnerName] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+
+  useEffect(() => {
+    Util.requestServer("user/name", "GET", {
+      userIdx: props.location.state.partnerIdx
+    }).then(async function (result) {
+      if(result.code === 200) {
+        setPartnerName(result.body.name);
+        setPartnerId(result.body.id);
+      }
+    });
+
+}, []);
 
   const handleNumChange = (e) => {
     setNum(e.target.value);
@@ -31,7 +48,23 @@ const Evaluation = () => {
     target.style.height = target.scrollHeight + "px";
   };
 
-  const uploadBtn = (e) => {};
+  const uploadBtn = (e) => {
+    if(num < 1 || num > 5) {
+      alert("평점을 1~5점 사이로 다시 입력해주세요.");
+    } else {
+      Util.requestServer("eval", "POST", {
+        userId: partnerId,
+        rating: num,
+        review: content
+      }).then(async function (result) {
+        if(result.code === 200) {
+          alert(result.body);
+
+          props.history.push("/");
+        }
+      });
+    }
+  };
 
   return (
     <MainLayout>
@@ -44,7 +77,7 @@ const Evaluation = () => {
         </div>
 
         <div className="ContentsWrapper">
-          <p className="Contents">쥬르리 님과의 거래를 평가해주세요!</p>
+          <p className="Contents">{partnerName} 님과의 거래를 평가해주세요!</p>
 
           <div className="NumWrapper">
             <div className="NumInnerWrapper">

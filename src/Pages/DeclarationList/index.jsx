@@ -12,17 +12,15 @@ import * as Util from "@util";
 const DeclarationList = (props) => {
   const { storeMain, storeItem, match, history } = props;
 
-  const [evalList, setEvalList] = useState([]);
-  const [average, setAverage] = useState("");
+  const [reportList, setReportList] = useState([]);
 
   useEffect(() => {
-    Util.requestServer("eval/list", "GET", {
-      userIdx: storeMain.mypageInfoIdx,
+    Util.requestServer("report/list", "GET", {
+      userId: storeMain.id,
     }).then(async function (result) {
       if (result.code === 200) {
+        setReportList(result.body.reportList);
         console.log(result);
-        setAverage(result.body.average);
-        setEvalList(result.body.evalList);
       }
     });
   }, []);
@@ -36,17 +34,16 @@ const DeclarationList = (props) => {
             <img className="WarningIcon" src={WarningIcon} alt=""></img>
             <div className="avg">
               <div className="text">
-                <p className="name">{storeMain.mypageInfoName}</p>
+                <p className="name">{storeMain.name}</p>
                 <p>님의 신고내역</p>
               </div>
             </div>
           </div>
           <div className="Middle">
-            {evalList.map((item, idx) => (
+            {reportList.map((item, idx) => (
               <div className="list" key={idx}>
-                <img className="starIcon" src={StarIcon} alt=""></img>
                 <div className="rate">
-                  <p>{item.review}</p>
+                  <p>{item.content}</p>
                 </div>
               </div>
             ))}

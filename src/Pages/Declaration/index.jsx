@@ -9,11 +9,27 @@ import TextareaLine from "@components/TextareaLine";
 
 import "./style.scss";
 
+import * as Util from "@util";
+
 import Logo from "@asset/bamboo.svg";
 import closeIcon from "@asset/close.svg";
 
-const Declaration = () => {
+const Declaration = (props) => {
   const [content, setContent] = useState("");
+  const [partnerName, setPartnerName] = useState("");
+  const [partnerId, setPartnerId] = useState("");
+
+  useEffect(() => {
+    Util.requestServer("user/name", "GET", {
+      userIdx: props.location.state.declaIdx
+    }).then(async function (result) {
+      if(result.code === 200) {
+        setPartnerName(result.body.name);
+        setPartnerId(result.body.id);
+      }
+    });
+
+}, []);
 
   const handleContentChange = (e) => {
     setContent(e.target.value);
@@ -25,7 +41,18 @@ const Declaration = () => {
     target.style.height = target.scrollHeight + "px";
   };
 
-  const uploadBtn = (e) => {};
+  const uploadBtn = (e) => {
+    Util.requestServer("report", "POST", {
+      userId: partnerId,
+      content: content
+    }).then(async function (result) {
+      if(result.code === 200) {
+        alert(result.body);
+
+        props.history.push("/");
+      }
+    });
+  };
 
   return (
     <MainLayout>
@@ -38,7 +65,7 @@ const Declaration = () => {
         </div>
 
         <div className="ContentsWrapper">
-          <p className="Contents">쥬르리 님과의 거래 중에 문제가 있으셨나요?</p>
+          <p className="Contents">{partnerName} 님과의 거래 중에 문제가 있으셨나요?</p>
 
           <TextareaLine
             padding="5px 0px 0px 5px"

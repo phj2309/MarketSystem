@@ -63,10 +63,17 @@ const MyPage = (props) => {
     props.history.replace("/purchaseList");
   };
   const movePage = (item) => {
+    props.history.replace({
+      pathname: "/declaration",
+      state: {declaIdx: storeMain.mypageInfoIdx}
+    })
+  };
+  const moveDeclaListPage = (item) => {
     props.history.replace("/declaList");
   };
 
   let purchase = null;
+  let declaration = null;
   if (storeMain.userIdx === storeMain.mypageInfoIdx) {
     purchase = (
       <div className="Purchase">
@@ -92,9 +99,17 @@ const MyPage = (props) => {
         </div>
       </div>
     );
-  }
-  let declaration = null;
-  if (storeMain.userIdx === storeMain.mypageInfoIdx) {
+    declaration = (
+      <div className="Button">
+        <Button
+          value="신고내역"
+          width="30%"
+          height="50px"
+          onClick={moveDeclaListPage}
+        ></Button>
+      </div>
+    );
+  } else {
     declaration = (
       <div className="Button">
         <Button
@@ -106,6 +121,19 @@ const MyPage = (props) => {
       </div>
     );
   }
+  
+  // if (storeMain.userIdx != storeMain.mypageInfoIdx) {
+  //   declaration = (
+  //     <div className="Button">
+  //       <Button
+  //         value="신고하기"
+  //         width="30%"
+  //         height="50px"
+  //         onClick={movePage}
+  //       ></Button>
+  //     </div>
+  //   );
+  // }
 
   return (
     <MainLayout>

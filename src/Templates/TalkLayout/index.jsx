@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef,  memo } from "react";
 import { observer, inject } from "mobx-react";
+import { withRouter, Link } from "react-router-dom";
 
 import Input from "@components/Input";
 import Button from "@components/Button";
@@ -12,6 +13,7 @@ import * as Util from "@util";
 const TalkLayout = (props) => {
     const { storeMain, storeChat, storeItem } = props;
     const [chat, setChat] = useState("");
+    const [transState, setTransState] = useState("");
     let transBtn;
 
     const handleChat = (e) => {
@@ -30,8 +32,19 @@ const TalkLayout = (props) => {
           }).then(async function (result) {
             if(result.code === 200) {
               alert(result.body);
+              setTransState("거래완료");
             }
           });
+    }
+
+    const btnEval = (e) => {
+        props.history.replace({
+            pathname: "/evaluation",
+            state: {partnerIdx: props.partnerIdx}
+          })
+        // props.history.replace(
+        //     "/evaluation"
+        //   )
     }
 
     const btnSend = (e) => {
@@ -59,20 +72,15 @@ const TalkLayout = (props) => {
                     ></Button>;
     }
 
-    // let transBtn = () => {
-    //     console.log("isMyItem: "+isMyItem);
-    //     if(props.isMyItem) {
-    //         return(
-    //             <Button
-    //                 onClick={btnTrans}
-    //                 value="거래 확정"
-    //                 disabled={disabled}
-    //                 width="110px"
-    //                 height="40px"
-    //             ></Button>
-    //         );
-    //     }
-    // }
+    if(props.transState == "거래완료" || transState == "거래완료") {
+        transBtn = <Button
+                        onClick={btnEval}
+                        value="평가하기"
+                        disabled={disabled}
+                        width="110px"
+                        height="40px"
+                    ></Button>;
+    }
 
     
 
@@ -109,4 +117,4 @@ const TalkLayout = (props) => {
     );
 };
 
-export default inject("storeMain", "storeChat", "storeItem")(TalkLayout);
+export default inject("storeMain", "storeChat", "storeItem")(withRouter(observer(TalkLayout)));
